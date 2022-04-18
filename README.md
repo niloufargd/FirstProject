@@ -12,7 +12,7 @@
 ```
 
 > Insert an image/s<img width="1316" alt="2" src="https://user-images.githubusercontent.com/44573189/163809510-bfbab29c-08e0-4165-9217-c03dd70c3d3c.png">
-creenshot of what you have built so far here.
+
 
 ## Milestone 2
 
@@ -51,7 +51,7 @@ cap.release()
 cv2.destroyAllWindows()"""
 ```
 
-> Insert screenshot of what you have built working.
+> 
 
 ## Milestone n: Designing the logic of the game
 
@@ -63,16 +63,16 @@ pool_choices = ["rock", "paper", "scissors"]
         random_index = random.randint(0, 2)
         ai_choice = pool_choices[random_index]
 ```
-"""
+
 ALso:
 ```
-"""
+
 ai_choice = random.choice(["rock", "paper", "scissors"])
-"""
+
 ```
 -Also we need to translate the prediction? we get from the computer to the actual choices. We get 4 probabbilities based on our four classes. Based on that we can define each choice of the computer. We can say any probablity higher than 0.5 means that, that particular class has been chosen. The first set of numbers we get correspond to our first class which is Rock and then Paper, Scissors and finally Nothing.
 ```
-"""
+
 if prediction[0][0] > 0.5:
             z = "rock"
 
@@ -83,11 +83,12 @@ if prediction[0][0] > 0.5:
             z = "scissors"
 
         else:
-            z = "nothing""""
+            z = "nothing
 ```
 -Now we need to figure out who won. For this we need to write down the rules and code based on that.
 
-PICTURE OF RULES
+![Game-tree-for-one-round-of-Rock-Paper-and-Scisors-In-the-first-column-are-the](https://user-images.githubusercontent.com/44573189/163812664-e11130c7-0668-43d1-bb13-b0ab895e802b.png)
+
 
 -Okay then now first thing we is to get rid of the easiest option which is when there's a tie.
 

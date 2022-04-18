@@ -11,7 +11,8 @@
 """Insert your code here"""
 ```
 
-> Insert an image/screenshot of what you have built so far here.
+> Insert an image/s<img width="1316" alt="2" src="https://user-images.githubusercontent.com/44573189/163809510-bfbab29c-08e0-4165-9217-c03dd70c3d3c.png">
+creenshot of what you have built so far here.
 
 ## Milestone 2
 

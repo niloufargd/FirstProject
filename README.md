@@ -5,7 +5,7 @@
 
 ## Milestone 1
 
-- First I created the model. By going to the https://teachablemachine.withgoogle.com/ . The model is made up of 4 classes: Rock, Paper, Scissors and Nothing. I took about 500 images of myself showing each gesture (and did nothing, just my face for the last one) to the camera and then trained the model (well the website itself did the hard job). Then I downloaded the model as a h5 file.
+- First I created the model. By going to the https://teachablemachine.withgoogle.com/ . The model is made up of 4 classes: Rock, Paper, Scissors and Nothing. I took about 500 images of myself showing each gesture (and did nothing, just my face for the last one) to the camera and then trained the model (well the website itself did the hard job). Then I downloaded the model as a h5 file called keras_model.h5 .
   
 ```python
 """Insert your code here"""
@@ -17,17 +17,38 @@ creenshot of what you have built so far here.
 ## Milestone 2
 
 
-- Then I installed opencv-python, tensorflow, and ipykernel via conda terminal for a new envirenment. 
+- Then I installed opencv-python, tensorflow, and ipykernel via Anaconda terminal for a new envirenment called my_env. I use PyCharm as my IDE.
+- Afterwards I downloaded the file that AiCore gave us to run the project. I changed the path for the model and entered the path where I have saved my trained model.
+-  
+- Note: I tried Spyder and VS Code but I got errors running the code. For VS Code I would get missing dll files and although I tried many solutions available on stackoverflow, I couldn't get to work and used PyCharm instead. I also installed Ubuntu and tried running that on VS Code but turns out that way it can not have access to the camera. 
 
-- Example below:
-
-```bash
-/bin/kafka-topics.sh --list --zookeeper 127.0.0.1:2181
-```
-
+- The cv2.VideoCapture(0) part of the code opens a camera for video capturing. 0 is for the default computer's camera. Also the cv2.imshow() method is used to display an image in a window. And prediction is a list containing 4 probabilities that correspond to our 4 classes.
 
 ```python
-"""Insert your code here"""
+"""import cv2
+from keras.models import load_model
+import numpy as np
+model = load_model('YOUR_MODEL.h5')
+cap = cv2.VideoCapture(0)
+data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+
+while True: 
+    ret, frame = cap.read()
+    resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
+    image_np = np.array(resized_frame)
+    normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
+    data[0] = normalized_image
+    prediction = model.predict(data)
+    cv2.imshow('frame', frame)
+    # Press q to close the window
+    print(prediction)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+            
+# After the loop release the cap object
+cap.release()
+# Destroy all the windows
+cv2.destroyAllWindows()"""
 ```
 
 > Insert screenshot of what you have built working.
@@ -40,7 +61,20 @@ creenshot of what you have built so far here.
 CODE
 
 -Also we need to translate the prediction? we get from the computer to the actual choices. We get 4 probabbilities based on our four classes. Based on that we can define each choice of the computer. We can say any probablity higher than 0.5 means that, that particular class has been chosen. The first set of numbers we get correspond to our first class which is Rock and then Paper, Scissors and finally Nothing.
+```
+"""
+if prediction[0][0] > 0.5:
+            z = "rock"
 
+        elif prediction[0][1] > 0.5:
+            z = "paper"
+
+        elif prediction[0][2] > 0.5:
+            z = "scissors"
+
+        else:
+            z = "nothing""""
+```
 -Now we need to figure out who won. For this we need to write down the rules and code based on that.
 
 PICTURE OF RULES

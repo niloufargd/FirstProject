@@ -56,10 +56,20 @@ cv2.destroyAllWindows()"""
 ## Milestone n: Designing the logic of the game
 
 
-- First the computer needs to randomley choose an option (R, P, S). First we need to import the random module. Then we define a variable called Play, then make a list of the optinos we have and then randomely choose one of them. It can be done in many ways. I write here two ways it can be done:
-
-CODE
-
+- First the computer needs to randomley choose an option (R, P, S). First we need to import the random module. Then we define a variable called Play, then make a list of the options we have and then randomely choose one of them. It can be done in many ways. I write here two ways it can be done:
+```
+"""
+pool_choices = ["rock", "paper", "scissors"]
+        random_index = random.randint(0, 2)
+        ai_choice = pool_choices[random_index]
+```
+"""
+ALso:
+```
+"""
+ai_choice = random.choice(["rock", "paper", "scissors"])
+"""
+```
 -Also we need to translate the prediction? we get from the computer to the actual choices. We get 4 probabbilities based on our four classes. Based on that we can define each choice of the computer. We can say any probablity higher than 0.5 means that, that particular class has been chosen. The first set of numbers we get correspond to our first class which is Rock and then Paper, Scissors and finally Nothing.
 ```
 """

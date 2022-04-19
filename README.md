@@ -50,10 +50,10 @@ cv2.destroyAllWindows()"""
 
 > 
 
-## Milestone n: Designing the logic of the game
+## Milestone 3: Designing the logic of the game
 
 
-- First the computer needs to randomley choose an option (R, P, S). First we need to import the random module. Then we define a variable called Play, then make a list of the options we have and then randomely choose one of them. It can be done in many ways. I write here two ways it can be done:
+- First the computer needs to randomley choose an option (R, P, S). For that to happen, we need to import the random module. Then we define a variable called Play, then make a list of the options we have and then randomely choose one of them. It can be done in many ways. I write here two ways it can be done:
 ```
 """
 pool_choices = ["rock", "paper", "scissors"]
@@ -67,7 +67,7 @@ ALso:
 ai_choice = random.choice(["rock", "paper", "scissors"])
 
 ```
--Also we need to translate the prediction? we get from the computer to the actual choices. We get 4 probabbilities based on our four classes. Based on that we can define each choice of the computer. We can say any probablity higher than 0.5 means that, that particular class has been chosen. The first set of numbers we get correspond to our first class which is Rock and then Paper, Scissors and finally Nothing.
+-Also we need to translate the prediction we get from the computer to the actual choices. We get 4 probabilities based on our four classes. Based on that we can define each choice of the computer. We can say any probablity higher than 0.5 means that, that particular class has been chosen. The first set of numbers we get correspond to our first class which is Rock and then Paper, Scissors and finally Nothing.
 ```
 
 if prediction[0][0] > 0.5:
@@ -89,27 +89,83 @@ if prediction[0][0] > 0.5:
 
 -Okay then now first thing we is to get rid of the easiest option which is when there's a tie.
 
-CODE
+```
+
+        if z == ai_choice:
+            return "It's a tie!"
+```
 
 -Then we take care of the times when the use has won and computer last. For this we can use a helper function. Inside the function we define a condition which includes all the times we/user wins and the computer loses and returns True, otherwise it returns False.
 
-Important: The name of the variables inside each function only works when we're inside that function. Do not use repetitive names from outside the function. 
+```
 
+    def helper (human, robot):
+        if (human == "rock" and robot == "scissors") or (human == "scissors" and robot == "paper") or (human == "paper" and robot == "rock"):
+            return True
+        return False
+```
 -And now what remains is the time computer has won.
 
 -Now we have to keep track of who has won to have an ultimate winner. When there's a tie, we don't add any points to anyone. And when either one wins we add one point. Anyone who has won 3times will be the ultimate winner.
 
 -We define a function for that. And before that for the 3 possible scenarios we make it return 0 for when there's a tie, 1 for when the user wins and -1 for when the computer wins also we return the variable for the computer's choice and the user's choice along with it so that we can print it later in the other funstion. 
 
+```
+        if z == ai_choice:
+            return (0, z, ai_choice)
+
+        if helper(z, ai_choice):
+            return (1, z, ai_choice)
+
+        return (-1, z, ai_choice)
+        ```
+
 -We define two variables inside this new function one to keep track of each win of the user and the other one to keep track of the wins of computer. 
 
+```
+    def real_winner():
+        user_count = 0
+        ai_count = 0
+        
+```
 -Then we define a condition, whenever either computer or the user wins three times print You have won or You have lost, otherwise keep playing by going to the Play function and also we set three variables result, user choice and computer choice so to the three values it returns. 
 
+```
+    def real_winner():
+        user_count = 0
+        ai_count = 0
+        while user_count < 3 and ai_count < 3:
+            result, z, ai_choice = play()
+           #tie
+            if result == 0:
+                print("You both have chosen {}.\n".format(z))
 
+            elif result ==1:
+                user_count += 1
+                print("You have chosen {} and the computer has chosen {}. You won!\n".format(z, ai_choice))
+            else:
+                ai_count += 1
+                print("You have chosen {} and the computer has chosen {}. You lost!. \n".format(z, ai_choice))
+            print("\n")
+
+        if user_count > ai_count:
+            print("You have won 3 rounds!")
+        else:
+            print("You have lost 3 rounds!")
+```
 -
-## Milestone n
+## Milestone 4
 
-COUNTDOWN TIMER: To have a wokring countdowntimer in our project we need to import the time module. Then we define a function and call it count_down_time and give it a t as a parametre. Then inside the function we set t to the secs variable an d then using the python formating to show timer and print it, we also set the sleep time to 1 second and then decrement t one at a time. 
+COUNTDOWN TIMER: To have a wokring countdowntimer in our project we need to import the time module. Then we define a function and call it count_down_time and give it a t as a parametre. Then inside the function we set t to the secs variable and then using the python formating to show timer and print it, we also set the sleep time to 1 second and then decrement t one at a time. 
+```
+    def count_down_time(t):
+        while t:
+            secs = t
+            timer = '{:02d}'.format(secs)
+            print(timer)
+            time.sleep(1)
+            t -= 1
+            ```
 
 - I added the time function to many places to make the game more user-friendly and enjoyable. The countdown shows up first when you want to play, when you finish the game and each time you want to make a choice to give you time.
 

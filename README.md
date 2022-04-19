@@ -8,7 +8,7 @@
 - First I created the model. By going to the https://teachablemachine.withgoogle.com/ . The model is made up of 4 classes: Rock, Paper, Scissors and Nothing. I took about 500 images of myself showing each gesture (and did nothing, just my face for the last one) to the camera and then trained the model (well the website itself did the hard job). Then I downloaded the model as a h5 file called keras_model.h5 .
   
 
-> Insert an image/s<img width="1316" alt="2" src="https://user-images.githubusercontent.com/44573189/163809510-bfbab29c-08e0-4165-9217-c03dd70c3d3c.png">
+<img width="1316" alt="2" src="https://user-images.githubusercontent.com/44573189/163809510-bfbab29c-08e0-4165-9217-c03dd70c3d3c.png">
 
 
 ## Milestone 2

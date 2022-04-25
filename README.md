@@ -88,7 +88,7 @@ if prediction[0][0] > 0.5:
 
 ```
 
-        if z == ai_choice:
+        if user_choice == ai_choice:
             return "It's a tie!"
 ```
 

@@ -150,10 +150,10 @@ if prediction[0][0] > 0.5:
         else:
             print("You have lost 3 rounds!")
 ```
--
 # Milestone 4
 
 COUNTDOWN TIMER: To have a wokring countdowntimer in our project we need to import the time module. Then we define a function and call it count_down_time and give it a t as a parametre. Then inside the function we set t to the secs variable and then using the python formating to show timer and print it, we also set the sleep time to 1 second and then decrement t one at a time. 
+
 ```
     def count_down_time(t):
         while t:
@@ -162,7 +162,7 @@ COUNTDOWN TIMER: To have a wokring countdowntimer in our project we need to impo
             print(timer)
             time.sleep(1)
             t -= 1
-            ```
+ ```         
 
 - But then you will find out that since we're using the camera, nothing should interefere with the main while loop. That means time.sleep() and another while loop can not be used.
 
@@ -173,6 +173,7 @@ COUNTDOWN TIMER: To have a wokring countdowntimer in our project we need to impo
 -For the program to work we need to close circuit and keep the ball rolling in one corner. Which means having on and off switches by the help of boolean expressions. We need 3 function in the program that should be kept checked. We keep those in the main while loop and others out.
 
 -The first important function is the one which has all the data for the the camera to work.
+
 ```
 def camera():
     global text
@@ -199,6 +200,7 @@ def camera():
 ```
 
 -The second one is about a function we define to keep track of the game and call it check point. 
+
 ```
 def checkpoint():
     global switch
@@ -217,6 +219,7 @@ def checkpoint():
 ```
 
 -The third one that we will need to keep the loop going inside it at some point is the function we define for countdown.
+
 ```
 def count_down():
     global text
@@ -248,7 +251,9 @@ def count_down():
 
 -First variables have scope in python. A variable defined outside a function can be accessed inside the function but can not be altered. if we want to alter it we need to call them inside the function like this: global var.
 
-Also for the game to work, we need to keep track of how many rounds we have played. We can create a variable called round and add to it every time the game is played. ```
+Also for the game to work, we need to keep track of how many rounds we have played. We can create a variable called round and add to it every time the game is played.
+
+```
     if result == 0:
         rounds += 1
 

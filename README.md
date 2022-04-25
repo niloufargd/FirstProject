@@ -68,16 +68,16 @@ ai_choice = random.choice(["rock", "paper", "scissors"])
 ```
 
 if prediction[0][0] > 0.5:
-            z = "rock"
+            user_choice = "rock"
 
         elif prediction[0][1] > 0.5:
-            z = "paper"
+            user_choice = "paper"
 
         elif prediction[0][2] > 0.5:
-            z = "scissors"
+            user_choice = "scissors"
 
         else:
-            z = "nothing
+            user_choice = "nothing
 ```
 -Now we need to figure out who won. For this we need to write down the rules and code based on that.
 

@@ -120,7 +120,7 @@ if prediction[0][0] > 0.5:
 -We define two variables inside this new function one to keep track of each win of the user and the other one to keep track of the wins of computer. 
 
 ```
-    def real_winner():
+    def winner():
         user_count = 0
         ai_count = 0
         
@@ -128,7 +128,7 @@ if prediction[0][0] > 0.5:
 -Then we define a condition, whenever either computer or the user wins three times print You have won or You have lost, otherwise keep playing by going to the Play function and also we set three variables result, user choice and computer choice so to the three values it returns. 
 
 ```
-    def real_winner():
+    def winner():
         user_count = 0
         ai_count = 0
         while user_count < 3 and ai_count < 3:
@@ -164,18 +164,114 @@ COUNTDOWN TIMER: To have a wokring countdowntimer in our project we need to impo
             t -= 1
             ```
 
-- I added the time function to many places to make the game more user-friendly and enjoyable. The countdown shows up first when you want to play, when you finish the game and each time you want to make a choice to give you time.
+- But then you will find out that since we're using the camera, nothing should interefere with the main while loop. That means time.sleep() and another while loop can not be used.
+
+-So instead for a timer we need a funstion that is updated every second. We use time.time() method which gives us a floating number expressed in seconds since the epoch, in UTC. Epoch is a fixed time. 
+
+-There is formula for finding out the elapsed time to see how much time the program takes to do a task. We can use this to our benefit by first defining start-time as time.time() which gives us the static epoch time and then using the actual method in the program to get a changing number.
+
+-For the program to work we need to close circuit and keep the ball rolling in one corner. Which means having on and off switches by the help of boolean expressions. We need 3 function in the program that should be kept checked. We keep those in the main while loop and others out.
+
+-The first important function is the one which has all the data for the the camera to work.
+```
+def camera():
+    global text
+    ret, frame = cap.read()
+    resized_frame = cv2.resize(frame, (224, 224), interpolation=cv2.INTER_AREA)
+    image_np = np.array(resized_frame)
+    normalized_image = (image_np.astype(np.float32) / 127.0) - 1  # Normalize the image
+    data[0] = normalized_image
+    logo = cv2.imread(r'C:\Users\nilou\Desktop\AiCore\Batman.png')
+    size = 100
+    logo = cv2.resize(logo, (size, size))
+    img2gray = cv2.cvtColor(logo, cv2.COLOR_BGR2GRAY)
+    ret, mask = cv2.threshold(img2gray, 1, 255, cv2.THRESH_BINARY)
+    roi = frame[-size - 10:-10, -size - 10:-10]
+    roi[np.where(mask)] = 0
+    roi += logo
+    cv2.putText(frame, 'RPS Game', (10, 30), cv2.FONT_HERSHEY_TRIPLEX, 1, (120, 0, 0), 2)
+    cv2.putText(frame, text, (10, 100), cv2.FONT_HERSHEY_TRIPLEX, 1, (86, 116, 185), 2)
+    cv2.putText(frame, text_2, (10, 200), cv2.FONT_HERSHEY_TRIPLEX, 1, (86, 116, 185), 2)
+    cv2.putText(frame, text_3, (10, 300), cv2.FONT_HERSHEY_TRIPLEX, 1, (0, 120, 0), 2)
+    cv2.putText(frame, text_4, (10, 400), cv2.FONT_HERSHEY_TRIPLEX, 1, (120, 0, 0), 3)
+    cv2.imshow('frame', frame)
+
+```
+
+-The second one is about a function we define to keep track of the game and call it check point. 
+```
+def checkpoint():
+    global switch
+    if switch == True:
+        if rounds == 1:
+            beginning()
+
+        elif rounds == 6:
+            print("last round")
+            finish()
+
+        elif rounds >= 1:
+            print("continue")
+            print(f"rounds are {rounds}")
+            press_continue()
+```
+
+-The third one that we will need to keep the loop going inside it at some point is the function we define for countdown.
+```
+def count_down():
+    global text
+    global countdown
+    global text_2
+    global text_3
+    global text_4
+    global switch
+    global game_play
+    global check_point
+    if switch == False:
+        t = (7 * rounds) - (time.time() - start_time)
+        if countdown == True:
+            text_2 = ''
+            text_3 = ''
+            text_4 = ''
+            text = f'Be ready in {int(t)} seconds'
+            print(t)
+        if t <= 0:
+            text = ''
+            switch = True
+            countdown = False
+            winner()
+```
+
+## Problems and how to deal with them:
+
+- So one of the pronblems that need to be dealt with is the countdown, it works fine for the first time if we subsitite the 
+
+-First variables have scope in python. A variable defined outside a function can be accessed inside the function but can not be altered. if we want to alter it we need to call them inside the function like this: global var.
+
+Also for the game to work, we need to keep track of how many rounds we have played. We can create a variable called round and add to it every time the game is played. ```
+    if result == 0:
+        rounds += 1
+
+    elif result == 1:
+        rounds += 1
+        user_count += 1
 
 
-## Milestone n
+    else:
+        rounds += 1
+        ai_count += 1
 
-- 
+```
 
-## Milestone n
+ So one of the problems that need to be dealt with is the countdown, it works fine for the first time if we substitute the result of time.time - start_time from a fixed number like 7. But for other times it won't work because t is already < 0. We need to have that fixed number combined with a variable that is updated throughout the game. We can either use rounds or the result of either ai or user. But the latter won't work because either could win or lose so it won't change for sure each time. So we use rounds.
 
-- 
+Also, the result should be converted to an integer to be shown on the camera.
 
-## Conclusions
+Also because we are using the round variable from the start in our countdown, it can't be zero. We start from 1.
 
-- Maybe write a conclusion to the project, what you understood about it and also how you would improve it or take it further.
+We define a boolean to keep the pots closed. We call it switch. Whenever the switch is on (True), the lid of the checkpoint is open and whenever the switch is off (False), the countdown works. 
+
+For text issue, we can go and check this out. I used different colors and also added a batman logo to my game. 
+
+
 

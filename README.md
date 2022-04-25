@@ -108,7 +108,7 @@ if prediction[0][0] > 0.5:
 -We define a function for that. And before that for the 3 possible scenarios we make it return 0 for when there's a tie, 1 for when the user wins and -1 for when the computer wins also we return the variable for the computer's choice and the user's choice along with it so that we can print it later in the other funstion. 
 
 ```
-        if z == ai_choice:
+        if user_choice == ai_choice:
             return (0, user_choice, ai_choice)
 
         if helper(z, ai_choice):

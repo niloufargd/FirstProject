@@ -274,7 +274,7 @@ Also because we are using the round variable from the start in our countdown, it
 
 We define a boolean to keep the pots closed. We call it switch. Whenever the switch is on (True), the lid of the checkpoint is open and whenever the switch is off (False), the countdown works. 
 
-For text issue, we can go and check this out. I used different colors and I also added a batman logo to my game. 
+For text issue, we can go and check this out.https://www.askpython.com/python-modules/opencv-puttext I used different colors and I also added a batman logo to my game. 
 
 
 

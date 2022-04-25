@@ -16,9 +16,6 @@
 
 - Then I installed opencv-python, tensorflow, and ipykernel via Anaconda terminal for a new envirenment called my_env. I use PyCharm as my IDE.
 - Afterwards I downloaded the file that AiCore gave us to run the project. I changed the path for the model and entered the path where I have saved my trained model.
--  
-- Note: I tried Spyder and VS Code but I got errors running the code. For VS Code I would get missing dll files and although I tried many solutions available on stackoverflow, I couldn't get to work and used PyCharm instead. I also installed Ubuntu and tried running that on VS Code but turns out that way it can not have access to the camera. 
-
 - The cv2.VideoCapture(0) part of the code opens a camera for video capturing. 0 is for the default computer's camera. Also the cv2.imshow() method is used to display an image in a window. And prediction is a list containing 4 probabilities that correspond to our 4 classes.
 
 ```python

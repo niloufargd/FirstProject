@@ -109,13 +109,13 @@ if prediction[0][0] > 0.5:
 
 ```
         if z == ai_choice:
-            return (0, z, ai_choice)
+            return (0, user_choice, ai_choice)
 
         if helper(z, ai_choice):
-            return (1, z, ai_choice)
+            return (1, user_choice, ai_choice)
 
-        return (-1, z, ai_choice)
-        ```
+        return (-1, user_choice, ai_choice)
+  ```      
 
 -We define two variables inside this new function one to keep track of each win of the user and the other one to keep track of the wins of computer. 
 
@@ -151,7 +151,7 @@ if prediction[0][0] > 0.5:
             print("You have lost 3 rounds!")
 ```
 -
-## Milestone 4
+# Milestone 4
 
 COUNTDOWN TIMER: To have a wokring countdowntimer in our project we need to import the time module. Then we define a function and call it count_down_time and give it a t as a parametre. Then inside the function we set t to the secs variable and then using the python formating to show timer and print it, we also set the sleep time to 1 second and then decrement t one at a time. 
 ```

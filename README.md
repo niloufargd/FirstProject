@@ -247,8 +247,6 @@ def count_down():
 
 ## Problems and how to deal with them:
 
-- So one of the pronblems that need to be dealt with is the countdown, it works fine for the first time if we subsitite the 
-
 -First variables have scope in python. A variable defined outside a function can be accessed inside the function but can not be altered. if we want to alter it we need to call them inside the function like this: global var.
 
 Also for the game to work, we need to keep track of how many rounds we have played. We can create a variable called round and add to it every time the game is played.
@@ -268,7 +266,7 @@ Also for the game to work, we need to keep track of how many rounds we have play
 
 ```
 
- So one of the problems that need to be dealt with is the countdown, it works fine for the first time if we substitute the result of time.time - start_time from a fixed number like 7. But for other times it won't work because t is already < 0. We need to have that fixed number combined with a variable that is updated throughout the game. We can either use rounds or the result of either ai or user. But the latter won't work because either could win or lose so it won't change for sure each time. So we use rounds.
+ So another problem that need to be dealt with is the countdown, it works fine for the first time if we substitute the result of time.time - start_time from a fixed number like 7. But for other times it won't work because t is already < 0. We need to have that fixed number combined with a variable that is updated throughout the game. We can either use rounds or the result of either ai or user. But the latter won't work because either could win or lose so it won't change for sure each time. So we use rounds.
 
 Also, the result should be converted to an integer to be shown on the camera.
 

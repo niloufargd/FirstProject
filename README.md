@@ -132,17 +132,17 @@ if prediction[0][0] > 0.5:
         user_count = 0
         ai_count = 0
         while user_count < 3 and ai_count < 3:
-            result, z, ai_choice = play()
+            result, user_choice, ai_choice = play()
            #tie
             if result == 0:
-                print("You both have chosen {}.\n".format(z))
+                print("You both have chosen {}.\n".format(user_choice))
 
             elif result ==1:
                 user_count += 1
-                print("You have chosen {} and the computer has chosen {}. You won!\n".format(z, ai_choice))
+                print("You have chosen {} and the computer has chosen {}. You won!\n".format(user_choice, ai_choice))
             else:
                 ai_count += 1
-                print("You have chosen {} and the computer has chosen {}. You lost!. \n".format(z, ai_choice))
+                print("You have chosen {} and the computer has chosen {}. You lost!. \n".format(zuser_choice, ai_choice))
             print("\n")
 
         if user_count > ai_count:

@@ -274,7 +274,10 @@ Also because we are using the round variable from the start in our countdown, it
 
 We define a boolean to keep the pots closed. We call it switch. Whenever the switch is on (True), the lid of the checkpoint is open and whenever the switch is off (False), the countdown works. 
 
-For text issue, we can go and check this out. I used different colors and also added a batman logo to my game. 
+For text issue, we can go and check this out. I used different colors and I also added a batman logo to my game. 
 
 
+
+
+![Batman](https://user-images.githubusercontent.com/44573189/165062817-e036ad32-1fa2-4d89-a72c-e22fe8ab7f02.png)
 
